@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="styles/scrollbar.css">
+	<style type="text/css">
+
+		body{ background-color: #95999A;}
+		.content { height: 3030px; }
+		.scrollwin{ height: 250px; width:440px; margin: 50px auto; overflow: hidden; position: relative;}
+	</style>
+</head>
+<body>
+	<input type="button" id="minus" value="减少20">
+	<input type="button" id="revert" value="恢复20">
+	<div class="scrollwin" id="js_windown">
+		<img class="content" id="js_content" src="images/third.jpg" style="height:3030px">
+		<div class="scrollbar webkitcss" id="js_scrollbar">
+			<div class="bar webkitcss" id="js_dragger"></div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="scripts/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="scripts/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="scripts/xScrollBar.js"></script>
+<script type="text/javascript">
+	var $doomroot = $('#js_windown')
+	var iScrollBar = new xScrollBar({
+		doomroot : $doomroot,
+		barTopToWin : 10,
+		gap : 20
+	});
+
+	$('#minus').click(function(e){
+		$doomroot.height(230);
+		iScrollBar.resetScrollBar();
+	});	
+	$('#revert').click(function(e){
+		$doomroot.height(250);
+		iScrollBar.resetScrollBar();
+	});
+</script>
+</html>

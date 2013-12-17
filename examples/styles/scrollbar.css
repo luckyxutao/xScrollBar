@@ -1,0 +1,3 @@
+.webkitcss{ -webkit-user-select : none;-webkit-user-drag: none; }
+.scrollbar {  border-radius: 5px; position:absolute; top:0px; right:6px; width:18px; height:100%; background-color: red; /* display: none;*/}
+.scrollbar .bar { none; border-radius: 5px;position:absolute; top:0px; left:0; width:18px;  background-color:#c3c3c3; cursor:pointer; }
