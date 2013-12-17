@@ -24,13 +24,14 @@
 <script type="text/javascript" src="scripts/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="scripts/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="scripts/jquery.mousewheel.js"></script>
-<script type="text/javascript" src="scripts/xScrollBar.js"></script>
+<script type="text/javascript" src="../src/xScrollBar.js"></script>
 <script type="text/javascript">
 	var $doomroot = $('#js_windown')
 	var iScrollBar = new xScrollBar({
 		doomroot : $doomroot,
 		barTopToWin : 10,
-		gap : 20
+		gap : 20,
+		mouseWheelGap : 3
 	});
 
 	$('#minus').click(function(e){

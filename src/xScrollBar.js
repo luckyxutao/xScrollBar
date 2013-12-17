@@ -3,9 +3,12 @@
 		barTopToWin: 0,
 		gap: 15,
 		minDraggerHeight: 20,
+		mouseWheelGap : 2,
 		enableAnimate: true,
-		animateTime: 1000,
-		animateType: 'easeOutCubic'
+		animateArgs : {
+			time : 1000,
+			type : 'easeOutCubic'
+		}
 	}, $doc = $(document);
 
 	function ScrollBar(opts) {
@@ -37,9 +40,9 @@
 			});
 		},
 		_cacheFuncProxyer: function(funcName) {
-			var __localData = this._attrdb[this.sizeName];
-			if (__localData) {
-				return __localData && __localData['_' + funcName] || this[funcName]();
+			var __cacheData = this._attrdb[this.sizeName];
+			if (__cacheData) {
+				return __cacheData && __cacheData['_' + funcName] || this[funcName]();
 			} else {
 				throw new Error('没有值')
 			}
@@ -137,6 +140,7 @@
 		//鼠标滚动时逻辑处理
 		_mouseWheelHandler: function(event, delta, deltaX, deltaY) {
 			if (this._cacheFuncProxyer('hasScrollBar')) {
+				delta*= this._opts.mouseWheelGap;
 				this._execScrolling(delta * -1, delta * this._getGap());
 			}
 		},
@@ -172,7 +176,6 @@
 		},
 		//内部函数===>处理内容gundong
 		_scrollToByMT: function(mt) {
-			var opts = this._opts;
 			var __maxMT = this._cacheFuncProxyer('_getMaxMT') * -1; //转换为负值
 			if (mt > 0) {
 				mt = 0;
@@ -181,10 +184,11 @@
 			}
 			this._currentMT = mt;
 			if (this._opts.enableAnimate) {
+				var animateArgs = this._opts.animateArgs;
 				this._$content.stop(true);
 				this._$content.animate({
 					'margin-top': mt
-				}, opts.animateTime, opts.animateType);
+				}, animateArgs.time, animateArgs.type);
 			} else {
 				this._$content.css('margin-top', mt);
 			}
